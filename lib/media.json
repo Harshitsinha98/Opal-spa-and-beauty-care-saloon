@@ -1,0 +1,104 @@
+{
+  "reception": {
+    "src": "/media/reception.webp",
+    "width": 1631,
+    "height": 2000,
+    "alt": "Reception desk with carved jaali panels and the waiting lounge",
+    "blurDataURL": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAQBACdASoQABQAPu1iqU2ppaOiMAgBMB2JQBbZMXNOATWK4e0ChloaAAD4wHG2ysc2oH5sNYxt6ocIR6tOJcvueciDGnEoZtMlc5HNgtSR3nS772LYWH1eITJTNM1htp21hPsuz1LolwSeghxQ5zN5xbaySSPJUgTp+GWAAAA="
+  },
+  "reception-front": {
+    "src": "/media/reception-front.webp",
+    "width": 1579,
+    "height": 2000,
+    "alt": "Front desk and styling area under the plum ceiling",
+    "blurDataURL": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAADwAwCdASoQABQAPu1iqU2ppaOiMAgBMB2JYwC06YxYiWPteWwAMfdAAP35jaSuSKAXBlVrVUcNtyIUHuuvGPCUwwh29YupVxfO+hzHlMuXvVN1M8aLyWZIOrLXBVO1FQ9dt5tejKqmTUNz5G/miXkLaYzB8ixvOSRkxwfuAAA="
+  },
+  "reception-mirror": {
+    "src": "/media/reception-mirror.webp",
+    "width": 1600,
+    "height": 1200,
+    "alt": "Lit mirror station behind the reception counter",
+    "blurDataURL": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABQAgCdASoQAAwAA4BaJQBOgMYiubYcCS0U0gAA/okWv0YdLFzTypTs8bXgU71dSmARvgfpNm6PSkr2/7ZBuaxZBuAVyCMCjGw71k7+1+eEBsZVpQQCidEjdATJOjJQmcM+S8AA"
+  },
+  "lounge": {
+    "src": "/media/lounge.webp",
+    "width": 1600,
+    "height": 1200,
+    "alt": "Velvet corner lounge with a brass Buddha",
+    "blurDataURL": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACQAgCdASoQAAwAA4BaJagCdAE2Wv75n9KTGO6FQADeO/6DfMqbkfiQuGGX26hfNXVUYTQyGRnyP4c+026uX7JixQRz5pfbspH+/98QToXcqYf/ua8PVroLgAAAAA=="
+  },
+  "lounge-tall": {
+    "src": "/media/lounge-tall.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Waiting lounge with fresh flowers",
+    "blurDataURL": "data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAAAwBACdASoQABUAPu1iqU2ppaOiMAgBMB2JaACdMoADDXtTR3Ww1rGZMkAA/mFo21y6ep8y5w53vqSzPMhpBqb8ZH7iaWTja++35PfHrzwOqTFpvCxtSAd+lW5q1yl7e2Fqqu2yBdgcXFDlYE2aDLc76a5biZOFhnca+h6UdbQLqxunJOqpmNUYAAA="
+  },
+  "fountain": {
+    "src": "/media/fountain.webp",
+    "width": 768,
+    "height": 1520,
+    "alt": "Stone Buddha water feature lit with warm light",
+    "blurDataURL": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAABQAwCdASoQACAALrV2u12jqampiYC0SxgFR6GMS6B8FOmYAAD+0luQdLvt/Ox6UDX3dKHC7iTQUx6EV03PT+J0nCnIql/sb/htvABhpyDTPXggLf1PnA29nycAltjYnmkCjjFK0gAAAA=="
+  },
+  "entrance-sign": {
+    "src": "/media/entrance-sign.webp",
+    "width": 984,
+    "height": 1600,
+    "alt": "Opal Family Spa signage at the entrance",
+    "blurDataURL": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAADQAwCdASoQABoAPu1kqU4ppaOiMAgBMB2JYwAASeRBhX/6HliTVAAA/VNE0BBPP4oFs+c4R12l1iJjW/gsr0CYogTFavAuiydDcLBmc3iJ709E/z+YCVSLv2nfU9SxNPvf/T5cYb2KApH1aM8PC0DVPKeuYZHRd9re/TLH2w5vZDaCYtKzzi1jVUu7kpDCOLX5jOxl5pfvvKIIAAA="
+  },
+  "entrance": {
+    "src": "/media/entrance.webp",
+    "width": 1500,
+    "height": 2000,
+    "alt": "Glass entrance and wooden panelled foyer",
+    "blurDataURL": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAABwBACdASoQABUAPu1iqU2ppaOiMAgBMB2JZQDDNYvg9T37XaRjcCE/LcWQAAD8K9dEByYfUP+joFv42Vy82SIhHnxAORKBftP0aPu3KuVXPNxMnQ78Lde3QSevMdoBVlwvtZqleYj1U3qrk+GqoQ6ByDS8hWra1Hn3CT6szMg/gC7sW0pfa7qhdPi/AAAA"
+  },
+  "corridor": {
+    "src": "/media/corridor.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Quiet corridor to the treatment rooms with floral drapes",
+    "blurDataURL": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAADwAwCdASoQABUAPu1iqU2ppaOiMAgBMB2JYwCdABjtFA707FS9zZcAAP6GNcVXtkNuNNoR4ykRkTNQqnEupJqxnRIcCTweLGZ1JxdXbDHvdCJN7mcj78n4wNP9O5U5s8uJH13NWGKswV+A3n7TuAgn/wLpEZRlszX5SbUAAAA="
+  },
+  "room-buddha": {
+    "src": "/media/room-buddha.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Treatment room with a Buddha painting and soft drapes",
+    "blurDataURL": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAADQAwCdASoQABUAPu1iqU2ppaQiMAgBMB2JYwCdAB6vCs5Tt+XNTdAA/msl88gAgmpVc1g0QRs3BuY4Bj2wrXWZIxklRRE1i7drPM23/Lvhq1vhIBJ1a6OFYegZoZC5fI99ipEqIV6RpOAwX+pM0M3PfhrKYD+VwJ5MvMOEAAA="
+  },
+  "room-drapes": {
+    "src": "/media/room-drapes.webp",
+    "width": 1128,
+    "height": 1408,
+    "alt": "Massage bed framed by patterned curtains",
+    "blurDataURL": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAADwAwCdASoQABQAPu1iqU2ppaOiMAgBMB2JZQC7ABei6o7lyD6fQxPwAOHDt7LF2HjoFsYQx6APVL4Wy/sbonyX6z4901odwdFt2sNU56ldudiyBS3Zbw6lyO+6OB2vGmMZKQ3j0TE7ilqeldaju1+SUGGD6dKhbZT18GoAAAA="
+  },
+  "room-soft": {
+    "src": "/media/room-soft.webp",
+    "width": 1200,
+    "height": 1600,
+    "alt": "Softly lit treatment room",
+    "blurDataURL": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAADQAwCdASoQABUAPu1iqU2ppaOiMAgBMB2JZQAAQbEh0QnGlG1UL+AA4nW9gCQkDfzzkbAdmruG2vUYl1LmdW95PcehNSkUxGnZiFk9zgAHBdgSgpxOOJfqCUL/epC7/OUr+SBZszDkQRUzqBnB4eh/3gN8FMfCDvZLh1HrLiG7DVI9Cmhsyubx/pB9wChFBsZyoFUoAAA="
+  },
+  "room-rose": {
+    "src": "/media/room-rose.webp",
+    "width": 1200,
+    "height": 1312,
+    "alt": "Massage table prepared with a single rose",
+    "blurDataURL": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADQAwCdASoQABEAPu1iqU2ppaOiMAgBMB2JYwC+SBePLTuJR8zNE6AA/tc+FWGk1wNf9cXLv1qWkafm6ws7JxnVO6SPMUqXK0BqM/g7u9v2sQ401AuDVstWDxvDZmXkJqJLq7StDvlvoaqauo8P8HszPDteAA=="
+  },
+  "room-wine": {
+    "src": "/media/room-wine.webp",
+    "width": 1200,
+    "height": 1440,
+    "alt": "Private massage room in wine and ivory stripes",
+    "blurDataURL": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAADwAwCdASoQABMAPu1iqU2ppaOiMAgBMB2JZQCw7Yv0hWCJG2m0wmhwAP4K/2bsBk3x/1+jNdzvYrKoWUSnvEaAxgtqQku9OLWMBjf1/zkAsbno8UvI9ecVDH+OZ6myzU6TRLZnD/iOCRsrGv2K6SflWvzPuDIVruiNl3Q4ppmPWAAA"
+  },
+  "reception-walk": {
+    "src": "/media/reception-walk.mp4",
+    "poster": "/media/reception-walk-poster.webp"
+  }
+}
