@@ -26,6 +26,18 @@ export default async function CancellationPage() {
         <p>To cancel a booking, please call or visit the salon.</p>
       )}
 
+      <h2>Changing the time</h2>
+      {s.reschedule.allowCustomer ? (
+        <p>
+          You can move a confirmed booking to another open time from <Link href="/account">My account</Link>, free of charge,
+          up to {s.reschedule.cutoffHours} hours before your appointment. Each booking can be moved {s.reschedule.maxPerBooking}{" "}
+          time{s.reschedule.maxPerBooking === 1 ? "" : "s"} online. Your payment carries over to the new time. After that, please
+          call the salon.
+        </p>
+      ) : (
+        <p>To change your appointment time, please call or visit the salon.</p>
+      )}
+
       <h2>Cancellation fee</h2>
       <ul>
         {c.freeWindowHours > 0 ? (

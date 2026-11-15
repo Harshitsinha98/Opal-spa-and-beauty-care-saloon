@@ -149,6 +149,7 @@ export const booking = pgTable(
     amountPaid: integer("amount_paid").notNull().default(0),
     cancellationFee: integer("cancellation_fee").notNull().default(0),
     refundAmount: integer("refund_amount").notNull().default(0),
+    rescheduleCount: integer("reschedule_count").notNull().default(0),
     notes: text("notes"),
     razorpayOrderId: text("razorpay_order_id"),
     razorpayPaymentId: text("razorpay_payment_id"),

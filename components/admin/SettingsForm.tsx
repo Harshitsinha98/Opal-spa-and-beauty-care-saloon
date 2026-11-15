@@ -160,13 +160,31 @@ export function SettingsForm({ initial, env }: { initial: Settings; env: Env }) 
             Pay at the salon / at pickup
           </label>
           <ul className="mt-2 space-y-1 rounded-md bg-ivory/70 p-3 text-xs">
-            <li>Razorpay keys: {env.razorpay ? "✓ set" : "✗ missing (RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET)"}</li>
+            <li>Razorpay keys: {env.razorpay ? "set" : "missing (RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET)"}</li>
             <li>
-              Razorpay webhook: {env.webhook ? "✓ set" : "✗ missing (RAZORPAY_WEBHOOK_SECRET)"}. URL: <code>{env.siteUrl}/api/razorpay/webhook</code>
+              Razorpay webhook: {env.webhook ? "set" : "missing (RAZORPAY_WEBHOOK_SECRET)"}. URL: <code>{env.siteUrl}/api/razorpay/webhook</code>
             </li>
-            <li>Google sign-in: {env.google ? "✓ on" : "off (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET)"}</li>
-            <li>Image uploads: {env.blob ? "✓ on" : "off (BLOB_READ_WRITE_TOKEN). You can still paste image URLs."}</li>
+            <li>Google sign-in: {env.google ? "on" : "off (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET)"}</li>
+            <li>Image uploads: {env.blob ? "on" : "off (BLOB_READ_WRITE_TOKEN). You can still paste image URLs."}</li>
           </ul>
+        </div>
+      </Card>
+
+      <Card title="Customer rescheduling">
+        <div className="grid gap-4 md:grid-cols-3">
+          <label className="flex items-center gap-2 text-sm md:col-span-3">
+            <input type="checkbox" checked={s.reschedule.allowCustomer} onChange={(e) => up("reschedule", { allowCustomer: e.target.checked })} />
+            Customers can move their own confirmed bookings from their account
+          </label>
+          <Field label="Allowed until (hours before visit)" hint="0 = right up to the start time">
+            <input className="field" type="number" min={0} max={168} value={s.reschedule.cutoffHours} onChange={(e) => up("reschedule", { cutoffHours: num(e.target.value) })} />
+          </Field>
+          <Field label="Moves allowed per booking">
+            <input className="field" type="number" min={1} max={10} value={s.reschedule.maxPerBooking} onChange={(e) => up("reschedule", { maxPerBooking: num(e.target.value) })} />
+          </Field>
+          <p className="self-end pb-2 text-xs text-mute">
+            Rescheduling is free and keeps the payment. You can always move a booking yourself from the booking page, without these limits.
+          </p>
         </div>
       </Card>
 

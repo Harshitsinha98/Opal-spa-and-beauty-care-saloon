@@ -32,6 +32,7 @@ export async function BookingDetail({ id, role }: { id: string; role: "admin" | 
               <dd>
                 {minutesToLabel(b.startMin)} – {minutesToLabel(b.endMin)}
               </dd>
+              {b.rescheduleCount > 0 && <dd className="text-xs text-mute">Moved by the guest {b.rescheduleCount}×</dd>}
             </div>
             <div>
               <dt className="text-xs text-mute">Guest</dt>

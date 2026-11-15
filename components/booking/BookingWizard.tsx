@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Check } from "../Check";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import clsx from "clsx";
@@ -69,9 +70,10 @@ export function BookingWizard(p: Props) {
       sessionStorage.removeItem(STORE);
       return;
     }
-    const sp = new URLSearchParams(window.location.search).get("service");
-    const id = sp ? Number(sp) : NaN;
-    if (all.some((s) => s.id === id)) setSelected([id]);
+    // ?service=3 or ?service=3,7 (used by "Book again")
+    const sp = new URLSearchParams(window.location.search).get("service") ?? "";
+    const ids = [...new Set(sp.split(",").map(Number))].filter((id) => all.some((s) => s.id === id)).slice(0, 6);
+    if (ids.length) setSelected(ids);
   }, [all, steps.length]);
 
   useEffect(() => {
@@ -325,7 +327,7 @@ export function BookingWizard(p: Props) {
                                   )}
                                   aria-hidden
                                 >
-                                  {on ? "✓" : ""}
+                                  {on ? <Check /> : null}
                                 </span>
                               </span>
                               <span className={clsx("mt-2 line-clamp-2 text-sm", on ? "text-brand-50/80" : "text-mute")}>{s.description}</span>
@@ -355,7 +357,7 @@ export function BookingWizard(p: Props) {
                       )}
                     >
                       <span className={clsx("flex h-12 w-12 items-center justify-center rounded-full font-display text-xl", staffId === st.id ? "bg-paper text-brand" : "bg-brand-50 text-brand")}>
-                        {st.id ? st.name[0] : "✦"}
+                        {st.id ? st.name[0] : <span className="font-sans text-xs font-bold">Any</span>}
                       </span>
                       <span>
                         <span className="display block text-2xl">{st.name}</span>
