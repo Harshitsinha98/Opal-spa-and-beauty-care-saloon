@@ -2,30 +2,30 @@
 import clsx from "clsx";
 
 /**
- * Product image, or when the salon hasn't uploaded one, a drawn bottle in the
+ * Product photo, or when the salon hasn't uploaded one, a drawn bottle in the
  * product's own colour so the shop never shows stock photos or empty boxes.
  */
 export function ProductSwatch({ name, tone, image, small }: { name: string; tone: string; image: string | null; small?: boolean }) {
   if (image) {
-    return <img src={image} alt={name} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />;
+    return <img src={image} alt={name} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" draggable={false} />;
   }
   return (
-    <div className="absolute inset-0 flex items-end justify-center" style={{ background: `linear-gradient(180deg, #f4ede5 0%, ${tone}33 100%)` }}>
-      <svg viewBox="0 0 120 200" className={clsx("w-auto", small ? "h-[80%]" : "h-[72%]")} aria-hidden>
-        <rect x="47" y="8" width="26" height="22" rx="3" fill="#2a1a20" />
-        <rect x="42" y="28" width="36" height="10" rx="2" fill="#3b2a30" />
-        <path d="M30 60c0-14 10-22 30-22s30 8 30 22v122c0 7-5 12-12 12H42c-7 0-12-5-12-12z" fill={tone} />
-        <path d="M30 60c0-14 10-22 30-22s30 8 30 22v122c0 7-5 12-12 12H42c-7 0-12-5-12-12z" fill="url(#shine)" />
-        <rect x="38" y="96" width="44" height="58" fill="#fbf8f4" opacity="0.92" />
+    <div className="absolute inset-0 flex items-end justify-center" style={{ background: `radial-gradient(80% 70% at 50% 85%, ${tone}55, transparent 70%), linear-gradient(180deg, #f3f1eb, ${tone}26)` }}>
+      <svg viewBox="0 0 120 200" className={clsx("w-auto drop-shadow-[0_18px_18px_rgba(15,31,27,0.18)]", small ? "h-[80%]" : "h-[70%]")} aria-hidden>
+        <rect x="46" y="8" width="28" height="22" rx="5" fill="#0f1f1b" />
+        <rect x="41" y="28" width="38" height="10" rx="3" fill="#24332f" />
+        <path d="M28 62c0-15 11-24 32-24s32 9 32 24v118c0 8-6 14-14 14H42c-8 0-14-6-14-14z" fill={tone} />
+        <path d="M28 62c0-15 11-24 32-24s32 9 32 24v118c0 8-6 14-14 14H42c-8 0-14-6-14-14z" fill="url(#shine)" />
+        <rect x="38" y="96" width="44" height="56" rx="6" fill="#ffffff" opacity="0.95" />
         {!small && (
           <>
-            <text x="60" y="120" textAnchor="middle" fontFamily="Georgia, serif" fontSize="13" fontStyle="italic" fill="#3b1d29">Opal</text>
-            <line x1="48" x2="72" y1="130" y2="130" stroke="#b47c76" strokeWidth="1" />
+            <text x="60" y="122" textAnchor="middle" fontFamily="system-ui, sans-serif" fontWeight="700" fontSize="13" letterSpacing="-0.5" fill="#d6336c">opal</text>
+            <rect x="52" y="130" width="16" height="2.5" rx="1.25" fill="#ffb020" />
           </>
         )}
         <defs>
           <linearGradient id="shine" x1="0" x2="1">
-            <stop offset="0" stopColor="#fff" stopOpacity="0.28" />
+            <stop offset="0" stopColor="#fff" stopOpacity="0.35" />
             <stop offset="0.35" stopColor="#fff" stopOpacity="0" />
             <stop offset="1" stopColor="#000" stopOpacity="0.12" />
           </linearGradient>

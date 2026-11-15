@@ -1,28 +1,45 @@
 @import "tailwindcss";
 
+/*
+ * Opal palette: deep jade + warm apricot on a soft stone background.
+ * Jade complements the pink/rose light in the salon photos instead of fighting it.
+ */
 @theme {
-  --color-paper: #fbf8f4;
-  --color-ivory: #f4ede5;
-  --color-sand: #e9ddd1;
-  --color-line: #ded1c5;
-  --color-ink: #1f1519;
-  --color-plum: #3b1d29;
-  --color-wine: #6a2c3c;
-  --color-rose: #b47c76;
-  --color-blush: #ecdcd5;
-  --color-brass: #9c7f52;
-  --color-mute: #76666a;
-  --color-ok: #3f6b4f;
-  --color-warn: #a2662a;
-  --color-bad: #9b3434;
+  /*
+   * Opal palette: raspberry pink (matches the salon's own pink lighting), marigold
+   * (the flower garlands on the lounge sofa) and a deep aubergine ink, on warm blush white.
+   */
+  --color-paper: #fff8f5;
+  --color-ivory: #fdeee8;
+  --color-sand: #f6dfd6;
+  --color-line: #f0dcd4;
+  --color-ink: #1d1220;
+  --color-mute: #6f5d67;
 
-  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
-  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --color-brand: #d6336c;
+  --color-brand-700: #b3225a;
+  --color-brand-900: #6e1238;
+  --color-brand-100: #ffd3e1;
+  --color-brand-50: #ffecf2;
+
+  --color-accent: #ffb020;
+  --color-accent-600: #f29a00;
+  --color-accent-50: #fff3d6;
+
+  --color-gold: #ffaa00;
+  --color-ok: #2f7d55;
+  --color-warn: #b7791f;
+  --color-bad: #c2413a;
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-quart: cubic-bezier(0.76, 0, 0.24, 1);
 
-  --animate-marquee: marquee 38s linear infinite;
+  --shadow-card: 0 1px 2px rgba(29, 18, 32, 0.04), 0 12px 32px -14px rgba(29, 18, 32, 0.14);
+  --shadow-lift: 0 2px 4px rgba(29, 18, 32, 0.05), 0 24px 48px -16px rgba(29, 18, 32, 0.22);
+
+  --animate-marquee: marquee 40s linear infinite;
   @keyframes marquee {
     from { transform: translate3d(0, 0, 0); }
     to { transform: translate3d(-50%, 0, 0); }
@@ -36,18 +53,9 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
-  body {
-    font-family: var(--font-sans);
-    font-feature-settings: "ss01", "kern";
-  }
-  ::selection {
-    background: var(--color-wine);
-    color: var(--color-paper);
-  }
-  :focus-visible {
-    outline: 2px solid var(--color-wine);
-    outline-offset: 3px;
-  }
+  body { font-family: var(--font-sans); }
+  ::selection { background: var(--color-brand); color: #fff; }
+  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
   input, select, textarea, button { font: inherit; }
 }
 
@@ -57,70 +65,86 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 
-/* Film grain over everything; keeps flat colour fields from looking digital. */
-.grain::after {
-  content: "";
-  position: fixed;
-  inset: -50%;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.07;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  animation: grain 7s steps(8) infinite;
-}
-@keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  20% { transform: translate(-3%, 2%); }
-  40% { transform: translate(2%, -3%); }
-  60% { transform: translate(-2%, -1%); }
-  80% { transform: translate(3%, 3%); }
-}
-
 .eyebrow {
-  font-family: var(--font-sans);
   font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-mute);
+  color: var(--color-brand);
 }
 
 .display {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 0.95;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+.display em { font-style: normal; }
+
+/* Marker-pen highlight behind a word or phrase */
+.mark {
+  background: linear-gradient(transparent 58%, var(--color-accent) 58%, var(--color-accent) 92%, transparent 92%);
+  padding: 0 0.08em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
 .link-u {
-  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0% 1px;
-  transition: background-size 0.6s var(--ease-expo);
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0% 1.5px;
+  transition: background-size 0.5s var(--ease-expo);
 }
-.link-u:hover { background-size: 100% 1px; }
+.link-u:hover { background-size: 100% 1.5px; }
 
-.arch { border-radius: 999px 999px 0 0; }
+.card {
+  border-radius: 1.5rem;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  box-shadow: var(--shadow-card);
+}
 
-.prose-legal h2 { font-family: var(--font-display); font-size: 1.9rem; line-height: 1.1; margin: 2.75rem 0 0.9rem; }
-.prose-legal h3 { font-weight: 600; margin: 1.6rem 0 0.4rem; }
-.prose-legal p, .prose-legal li { color: #3d3236; line-height: 1.75; }
+/* Soft colour wash used behind page headers and the hero */
+.wash {
+  background:
+    radial-gradient(60% 70% at 85% 10%, rgba(255, 176, 32, 0.13), transparent 60%),
+    radial-gradient(55% 60% at 5% 0%, rgba(214, 51, 108, 0.12), transparent 60%);
+}
+
+.dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.prose-legal h2 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; font-size: 1.6rem; line-height: 1.15; margin: 2.5rem 0 0.8rem; }
+.prose-legal h3 { font-weight: 700; margin: 1.6rem 0 0.4rem; }
+.prose-legal p, .prose-legal li { color: #3e2f3a; line-height: 1.75; }
 .prose-legal p + p { margin-top: 0.9rem; }
 .prose-legal ul { list-style: disc; padding-left: 1.25rem; margin: 0.6rem 0; }
 .prose-legal li + li { margin-top: 0.35rem; }
-.prose-legal a { color: var(--color-wine); text-decoration: underline; text-underline-offset: 3px; }
+.prose-legal a { color: var(--color-brand); text-decoration: underline; text-underline-offset: 3px; }
 
 .field {
   width: 100%;
   border: 1px solid var(--color-line);
   background: #fff;
-  border-radius: 2px;
-  padding: 0.7rem 0.85rem;
-  transition: border-color 0.2s;
+  border-radius: 0.85rem;
+  padding: 0.72rem 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.field:focus { outline: none; border-color: var(--color-wine); }
-
-@media (prefers-reduced-motion: reduce) {
-  .grain::after { animation: none; }
-  .animate-marquee { animation: none !important; }
-}
+.field:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 4px rgba(214, 51, 108, 0.12); }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none !important; }
+}

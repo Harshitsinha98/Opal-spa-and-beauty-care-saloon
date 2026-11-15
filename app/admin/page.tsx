@@ -65,14 +65,14 @@ export default async function AdminDashboard() {
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
         {stats.map((s) => (
-          <Link key={s.label} href={s.href} className="rounded-lg border border-line bg-white p-4 transition-colors hover:border-plum/40">
+          <Link key={s.label} href={s.href} className="rounded-lg border border-line bg-white p-4 transition-colors hover:border-brand/40">
             <p className="text-xs text-mute">{s.label}</p>
             <p className="display mt-2 text-3xl">{s.value}</p>
           </Link>
         ))}
       </div>
 
-      <Card title="Today's schedule" className="mt-6" action={<Link href="/admin/bookings" className="text-xs text-wine underline">All bookings</Link>}>
+      <Card title="Today's schedule" className="mt-6" action={<Link href="/admin/bookings" className="text-xs text-brand underline">All bookings</Link>}>
         {todayList.length === 0 ? <p className="text-sm text-mute">No bookings today.</p> : <BookingTable rows={todayList} hideDate />}
       </Card>
 

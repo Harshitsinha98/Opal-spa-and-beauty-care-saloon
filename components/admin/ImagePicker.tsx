@@ -57,7 +57,7 @@ export function ImagePicker({ value, onChange }: { value: string; onChange: (v: 
         <summary className="cursor-pointer text-mute">Or pick a salon photo</summary>
         <div className="mt-2 grid grid-cols-6 gap-1.5">
           {SALON.map((src) => (
-            <button type="button" key={src} onClick={() => onChange(src)} className={`aspect-[3/4] overflow-hidden rounded ${value === src ? "ring-2 ring-plum" : ""}`}>
+            <button type="button" key={src} onClick={() => onChange(src)} className={`aspect-[3/4] overflow-hidden rounded ${value === src ? "ring-2 ring-brand" : ""}`}>
               <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" />
             </button>
           ))}

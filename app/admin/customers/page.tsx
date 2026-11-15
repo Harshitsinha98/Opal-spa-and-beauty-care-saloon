@@ -32,7 +32,7 @@ export default async function AdminCustomers({ searchParams }: { searchParams: P
       <Card className="mb-4">
         <form method="get" className="flex gap-3">
           <input name="q" defaultValue={q} className="field max-w-sm text-sm" placeholder="Name, email or phone" />
-          <button className="rounded-md bg-plum px-4 text-sm text-paper">Search</button>
+          <button className="rounded-md bg-brand px-4 text-sm text-paper">Search</button>
         </form>
       </Card>
       <Card>

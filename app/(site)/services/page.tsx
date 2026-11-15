@@ -1,53 +1,68 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getMenu } from "@/lib/catalog";
+import { serviceImage } from "@/lib/service-image";
 import { PageHeader } from "@/components/site/PageHeader";
-import { MenuList } from "@/components/site/MenuList";
-import { Reveal } from "@/components/motion/Reveal";
+import { ServiceCard } from "@/components/site/ServiceCard";
 import { CategoryNav } from "@/components/site/CategoryNav";
+import { Reveal } from "@/components/motion/Reveal";
+import { Arrow } from "@/components/Arrow";
 
 export const metadata: Metadata = {
-  title: "Menu & prices",
+  title: "Services & prices",
   description: "Massages, body rituals, facials, hair, nails and grooming at Opal Spa, Arera Colony, Bhopal. Durations and prices for every treatment.",
   alternates: { canonical: "/services" },
 };
 
 export default async function ServicesPage() {
   const menu = await getMenu();
-  let counter = 1;
   return (
     <>
       <PageHeader
-        eyebrow="Menu & prices"
-        lines={["Treatments,", <em key="t" className="text-wine">by the hour</em>]}
-        intro="Tap any treatment to book it, or combine a few on the booking page. Prices are per person."
+        eyebrow="Services & prices"
+        title={
+          <>
+            Every treatment, <em className="text-brand">clearly priced</em>
+          </>
+        }
+        intro="Tap any card to book it, or combine a few on the booking page. Prices are per person."
       />
       <CategoryNav items={menu.map((c) => ({ slug: c.slug, name: c.name }))} />
-      <div className="mx-auto max-w-[1440px] px-5 pb-32 md:px-10">
-        {menu.map((c) => {
-          const start = counter;
-          counter += c.services.length;
-          return (
-            <section key={c.id} id={c.slug} className="scroll-mt-40 pt-20">
-              <div className="mb-8 grid gap-4 md:grid-cols-12">
-                <Reveal className="md:col-span-5">
-                  <h2 className="display text-5xl md:text-6xl">{c.name}</h2>
+      <div className="mx-auto max-w-[1280px] px-5 pb-24 md:px-8">
+        {menu.map((c) => (
+          <section key={c.id} id={c.slug} className="scroll-mt-40 pt-14">
+            <Reveal className="mb-6 flex flex-col justify-between gap-2 md:flex-row md:items-end">
+              <h2 className="display text-3xl md:text-4xl">{c.name}</h2>
+              {c.blurb && <p className="text-mute">{c.blurb}</p>}
+            </Reveal>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {c.services.map((s, i) => (
+                <Reveal key={s.id} delay={(i % 4) * 0.05}>
+                  <ServiceCard
+                    s={{
+                      id: s.id,
+                      name: s.name,
+                      description: s.description,
+                      durationMin: s.durationMin,
+                      price: s.price,
+                      featured: s.featured,
+                      category: c.name,
+                      image: serviceImage(s.image, c.slug, i),
+                    }}
+                  />
                 </Reveal>
-                {c.blurb && (
-                  <Reveal delay={0.1} className="text-sm leading-relaxed text-mute md:col-span-4 md:col-start-9 md:self-end">
-                    {c.blurb}
-                  </Reveal>
-                )}
-              </div>
-              <MenuList start={start} items={c.services.map((s) => ({ ...s, category: c.name }))} />
-            </section>
-          );
-        })}
-        {menu.length === 0 && <p className="text-mute">The menu is being updated. Please call the salon.</p>}
-        <Reveal className="mt-24 flex flex-col items-start gap-6 border-t border-line pt-12 md:flex-row md:items-center md:justify-between">
-          <p className="display max-w-xl text-3xl md:text-4xl">Not sure what to pick? Book any massage and add a note. We'll talk it through when you arrive.</p>
-          <Link href="/book" className="rounded-full bg-plum px-7 py-4 text-sm text-paper transition-colors hover:bg-wine">
-            Book a visit
+              ))}
+            </div>
+          </section>
+        ))}
+        {menu.length === 0 && <p className="pt-10 text-mute">The menu is being updated. Please call the salon.</p>}
+        <Reveal className="card mt-20 flex flex-col items-start gap-6 p-8 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="display text-2xl md:text-3xl">Not sure what to pick?</p>
+            <p className="mt-1 text-mute">Book any massage and add a note. We&rsquo;ll talk it through when you arrive.</p>
+          </div>
+          <Link href="/book" className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-4 font-semibold text-white hover:bg-brand-700">
+            Book a visit <Arrow />
           </Link>
         </Reveal>
       </div>

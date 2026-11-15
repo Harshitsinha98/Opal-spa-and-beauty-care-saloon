@@ -107,7 +107,7 @@ export function CheckoutForm({ methods, businessName, address }: { methods: ("on
             opening hours at {address}. Bring your order code.
           </p>
           {error && <p className="mt-4 text-sm text-warn">{error}</p>}
-          <Link href="/account" className="mt-10 inline-block rounded-full bg-plum px-7 py-4 text-sm text-paper">
+          <Link href="/account" className="mt-10 inline-block rounded-full bg-brand px-7 py-4 text-sm text-paper">
             View my orders
           </Link>
         </motion.div>
@@ -118,13 +118,13 @@ export function CheckoutForm({ methods, businessName, address }: { methods: ("on
   return (
     <section className="mx-auto max-w-[1200px] px-5 pb-32 pt-36 md:px-10">
       <p className="eyebrow">Checkout · pickup at the salon</p>
-      <h1 className="display mt-4 text-5xl md:text-7xl">Your order</h1>
+      <h1 className="display mt-4 text-4xl md:text-6xl">Your order</h1>
       {notice && <p className="mt-6 text-sm text-warn">{notice}</p>}
 
       {lines.length === 0 ? (
         <p className="mt-10 text-mute">
           Your bag is empty.{" "}
-          <Link href="/shop" className="text-wine underline">
+          <Link href="/shop" className="text-brand underline">
             Visit the shop
           </Link>
         </p>
@@ -134,11 +134,11 @@ export function CheckoutForm({ methods, businessName, address }: { methods: ("on
             {isPending ? (
               <div className="h-40 animate-pulse bg-ivory" />
             ) : !session?.user ? (
-              <div className="border border-line bg-white p-8">
+              <div className="card p-8">
                 <p className="display text-3xl">Sign in to place your order</p>
                 <p className="mt-2 text-sm text-mute">Your bag is saved on this device.</p>
                 <div className="mt-6 flex gap-3">
-                  <Link href="/sign-in?next=/checkout" className="rounded-full bg-plum px-6 py-3 text-sm text-paper">
+                  <Link href="/sign-in?next=/checkout" className="rounded-full bg-brand px-6 py-3 text-sm text-paper">
                     Sign in
                   </Link>
                   <Link href="/sign-up?next=/checkout" className="rounded-full border border-line px-6 py-3 text-sm">
@@ -164,8 +164,8 @@ export function CheckoutForm({ methods, businessName, address }: { methods: ("on
                   <legend className="mb-3 text-sm text-mute">Payment</legend>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {methods.map((m) => (
-                      <label key={m} className={clsx("flex cursor-pointer items-start gap-3 border p-5", method === m ? "border-plum bg-ivory" : "border-line bg-white")}>
-                        <input type="radio" className="mt-1 accent-[#3b1d29]" checked={method === m} onChange={() => setMethod(m)} />
+                      <label key={m} className={clsx("flex cursor-pointer items-start gap-3 rounded-2xl border p-5", method === m ? "border-brand bg-ivory" : "border-line bg-white")}>
+                        <input type="radio" className="mt-1 accent-[#d6336c]" checked={method === m} onChange={() => setMethod(m)} />
                         <span>
                           <span className="block font-medium">{m === "online" ? "Pay now" : "Pay at pickup"}</span>
                           <span className="text-sm text-mute">{m === "online" ? "UPI, cards, net banking via Razorpay" : "Cash, UPI or card at the counter"}</span>
@@ -176,15 +176,15 @@ export function CheckoutForm({ methods, businessName, address }: { methods: ("on
                   {methods.length === 0 && <p className="text-sm text-bad">Ordering is paused right now.</p>}
                 </fieldset>
                 {unpaid ? (
-                  <div className="border border-warn/40 bg-warn/5 p-5 sm:col-span-2">
+                  <div className="rounded-2xl border border-warn/40 bg-warn/5 p-5 sm:col-span-2">
                     <p className="font-medium">Payment not finished</p>
                     <p className="mt-1 text-sm text-mute">We're holding these items for a few minutes.</p>
-                    <button type="button" onClick={retry} disabled={pending} className="mt-4 rounded-full bg-plum px-6 py-3 text-sm text-paper">
+                    <button type="button" onClick={retry} disabled={pending} className="mt-4 rounded-full bg-brand px-6 py-3 text-sm text-paper">
                       Try payment again
                     </button>
                   </div>
                 ) : (
-                  <button disabled={pending || !methods.length} className="rounded-full bg-plum py-4 text-sm text-paper hover:bg-wine disabled:opacity-60 sm:col-span-2 sm:w-fit sm:px-12">
+                  <button disabled={pending || !methods.length} className="rounded-full bg-brand py-4 text-sm text-paper hover:bg-brand-700 disabled:opacity-60 sm:col-span-2 sm:w-fit sm:px-12">
                     {pending ? "Please wait…" : method === "online" ? `Pay ${rupees(total)}` : "Place order"}
                   </button>
                 )}
@@ -193,11 +193,11 @@ export function CheckoutForm({ methods, businessName, address }: { methods: ("on
             )}
           </div>
           <aside className="lg:col-span-5">
-            <div className="border border-line bg-white p-6">
+            <div className="card p-6">
               <ul className="divide-y divide-line">
                 {lines.map((l) => (
                   <li key={l.productId} className="flex gap-4 py-4 first:pt-0">
-                    <div className="relative h-16 w-14 shrink-0 overflow-hidden bg-ivory">
+                    <div className="relative h-16 w-14 shrink-0 overflow-hidden rounded-xl bg-ivory">
                       <ProductSwatch name={l.name} tone={l.tone} image={l.image} small />
                     </div>
                     <div className="flex flex-1 justify-between text-sm">

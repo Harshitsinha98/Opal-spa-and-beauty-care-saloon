@@ -68,13 +68,13 @@ export function Lightbox({ children }: { children: ReactNode }) {
             >
               <Image src={m.src} alt={m.alt} fill sizes="100vw" className="object-contain" placeholder="blur" blurDataURL={m.blurDataURL} />
             </motion.div>
-            <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-center text-sm text-blush/80">{m.alt}</p>
-            <button className="absolute right-5 top-5 text-sm text-blush hover:text-paper" onClick={close}>
+            <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-center text-sm text-brand-50/80">{m.alt}</p>
+            <button className="absolute right-5 top-5 text-sm text-brand-50 hover:text-paper" onClick={close}>
               Close
             </button>
             <button
               aria-label="Previous photo"
-              className="absolute left-3 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full border border-blush/30 text-blush hover:bg-paper hover:text-ink"
+              className="absolute left-3 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full border border-brand-50/30 text-brand-50 hover:bg-paper hover:text-ink"
               onClick={(e) => {
                 e.stopPropagation();
                 step(-1);
@@ -84,7 +84,7 @@ export function Lightbox({ children }: { children: ReactNode }) {
             </button>
             <button
               aria-label="Next photo"
-              className="absolute right-3 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full border border-blush/30 text-blush hover:bg-paper hover:text-ink"
+              className="absolute right-3 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full border border-brand-50/30 text-brand-50 hover:bg-paper hover:text-ink"
               onClick={(e) => {
                 e.stopPropagation();
                 step(1);

@@ -1,20 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Hanken_Grotesk } from "next/font/google";
+import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
 import { SITE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const display = Cormorant_Garamond({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  weight: ["500", "600", "700"],
+  variable: "--font-bricolage",
   display: "swap",
 });
 
-const sans = Hanken_Grotesk({
+const sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-hanken",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-jakarta",
   display: "swap",
 });
 
@@ -34,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbf8f4",
+  themeColor: "#f7f6f2",
   width: "device-width",
   initialScale: 1,
 };

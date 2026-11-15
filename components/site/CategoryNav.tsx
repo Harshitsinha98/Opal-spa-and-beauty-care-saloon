@@ -26,20 +26,20 @@ export function CategoryNav({ items }: { items: { slug: string; name: string }[]
     const el = document.getElementById(slug);
     if (!el) return;
     const lenis = getLenis();
-    if (lenis) lenis.scrollTo(el, { offset: -130 });
+    if (lenis) lenis.scrollTo(el, { offset: -160 });
     else el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="sticky top-[4.5rem] z-30 border-y border-line bg-paper/90 backdrop-blur-md">
-      <div className="no-scrollbar mx-auto flex max-w-[1440px] gap-2 overflow-x-auto px-5 py-3 md:px-10">
+    <div className="sticky top-[5.6rem] z-30 px-5 md:top-[6rem] md:px-8">
+      <div className="no-scrollbar mx-auto flex w-fit max-w-full gap-1 overflow-x-auto rounded-full border border-line bg-white/90 p-1.5 shadow-[var(--shadow-card)] backdrop-blur-xl">
         {items.map((i) => (
           <button
             key={i.slug}
             onClick={() => jump(i.slug)}
             className={clsx(
-              "shrink-0 rounded-full px-4 py-2 text-[0.8rem] tracking-wide transition-colors",
-              active === i.slug ? "bg-plum text-paper" : "text-ink/70 hover:bg-ivory",
+              "shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+              active === i.slug ? "bg-ink text-white" : "text-mute hover:text-ink",
             )}
           >
             {i.name}

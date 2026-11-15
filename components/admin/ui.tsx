@@ -17,7 +17,7 @@ export function Btn({
       {...rest}
       className={clsx(
         "inline-flex items-center justify-center gap-2 rounded-md px-3.5 py-2 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-50",
-        variant === "primary" && "bg-plum text-paper hover:bg-wine",
+        variant === "primary" && "bg-brand text-paper hover:bg-brand-700",
         variant === "ghost" && "border border-line bg-white hover:border-ink/40",
         variant === "danger" && "bg-bad text-paper hover:bg-bad/90",
         variant === "soft" && "bg-ivory text-ink hover:bg-sand",

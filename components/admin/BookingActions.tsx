@@ -242,7 +242,7 @@ function MoveModal({ open, onClose, b }: { open: boolean; onClose: () => void; b
               key={s.start}
               disabled={!s.available}
               onClick={() => setSlot(s.start)}
-              className={`rounded border px-1 py-2 text-xs ${slot === s.start ? "border-plum bg-plum text-paper" : s.available ? "border-line" : "border-line text-mute/40 line-through"}`}
+              className={`rounded border px-1 py-2 text-xs ${slot === s.start ? "border-brand bg-brand text-paper" : s.available ? "border-line" : "border-line text-mute/40 line-through"}`}
             >
               {minutesToLabel(s.start)}
             </button>

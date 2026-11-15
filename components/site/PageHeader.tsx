@@ -1,18 +1,17 @@
 import type { ReactNode } from "react";
-import { MaskLines, Reveal } from "../motion/Reveal";
+import { Reveal } from "../motion/Reveal";
 
-export function PageHeader({ eyebrow, lines, intro }: { eyebrow: string; lines: ReactNode[]; intro?: ReactNode }) {
+export function PageHeader({ eyebrow, title, intro, children }: { eyebrow: string; title: ReactNode; intro?: ReactNode; children?: ReactNode }) {
   return (
-    <header className="mx-auto max-w-[1440px] px-5 pb-14 pt-36 md:px-10 md:pb-20 md:pt-44">
-      <Reveal>
-        <p className="eyebrow">{eyebrow}</p>
-      </Reveal>
-      <MaskLines as="h1" immediate delay={0.1} className="display mt-5 text-[3.4rem] md:text-[6.5rem]" lines={lines} />
-      {intro && (
-        <Reveal delay={0.3} className="mt-8 max-w-xl text-[0.98rem] leading-relaxed text-ink/75">
-          {intro}
+    <header className="wash">
+      <div className="mx-auto max-w-[1280px] px-5 pb-12 pt-32 md:px-8 md:pb-16 md:pt-40">
+        <Reveal>
+          <span className="pill border border-line bg-white text-brand">{eyebrow}</span>
+          <h1 className="display mt-5 max-w-3xl text-[2.7rem] md:text-6xl">{title}</h1>
+          {intro && <p className="mt-5 max-w-xl text-lg leading-relaxed text-mute">{intro}</p>}
         </Reveal>
-      )}
+        {children}
+      </div>
     </header>
   );
 }

@@ -46,7 +46,7 @@ export default async function AdminBookings({ searchParams }: { searchParams: Pr
             <input name="q" defaultValue={q} placeholder="Name, phone, ref" className="field mt-1 text-sm text-ink" />
           </label>
           <div className="flex items-end gap-2">
-            <button className="rounded-md bg-plum px-4 py-2.5 text-sm text-paper">Filter</button>
+            <button className="rounded-md bg-brand px-4 py-2.5 text-sm text-paper">Filter</button>
             <a href="/admin/bookings" className="rounded-md border border-line px-4 py-2.5 text-sm">
               Reset
             </a>

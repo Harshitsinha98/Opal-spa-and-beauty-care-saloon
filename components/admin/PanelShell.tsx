@@ -24,7 +24,7 @@ export function PanelShell({
   const isActive = (href: string) => (href === "/admin" || href === "/staff" ? pathname === href : pathname.startsWith(href));
 
   return (
-    <div className="min-h-dvh bg-[#f7f3ee] text-ink">
+    <div className="min-h-dvh bg-ivory text-ink">
       <header className="sticky top-0 z-40 flex h-14 items-center justify-between border-b border-line bg-white px-4 lg:hidden">
         <Link href={nav[0].href}>
           <Logo />
@@ -54,7 +54,7 @@ export function PanelShell({
                 onClick={() => setOpen(false)}
                 className={clsx(
                   "block rounded-md px-3 py-2 text-sm transition-colors",
-                  isActive(n.href) ? "bg-plum text-paper" : "text-ink/75 hover:bg-ivory",
+                  isActive(n.href) ? "bg-brand text-paper" : "text-ink/75 hover:bg-ivory",
                 )}
               >
                 {n.label}
@@ -65,7 +65,7 @@ export function PanelShell({
             <p className="truncate font-medium">{user.name}</p>
             <p className="truncate text-mute">{user.email}</p>
             <div className="mt-3 flex gap-3">
-              <Link href="/" className="text-wine underline">
+              <Link href="/" className="text-brand underline">
                 View site
               </Link>
               <button

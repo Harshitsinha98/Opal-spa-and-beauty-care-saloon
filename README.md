@@ -43,9 +43,16 @@ Without keys, online payment is hidden and customers can only choose pay at the 
 
 How payments are trusted: the amount always comes from the database, never the browser. After Checkout, the server verifies the Razorpay signature, fetches the payment from Razorpay to confirm it is captured, and only then marks the booking paid. The webhook does the same if the browser closes early. Both paths are idempotent. Online bookings hold the slot for a few minutes (configurable). Unpaid holds expire and free the slot or stock.
 
-### Google sign-in (optional)
+### Google sign-in
 
-Google Cloud Console → APIs & Services → Credentials → OAuth client ID (Web). Authorised redirect URI: `https://<your-site>/api/auth/callback/google`.
+1. https://console.cloud.google.com → create a project.
+2. *APIs & Services → OAuth consent screen*: User type **External**, app name "Opal Spa", support email, then **Publish app** (otherwise only test users can sign in).
+3. *APIs & Services → Credentials → Create credentials → OAuth client ID*, type **Web application**.
+   - Authorised JavaScript origins: `https://<your-site>`
+   - Authorised redirect URIs: `https://<your-site>/api/auth/callback/google`
+4. Put the Client ID and Client secret in Vercel as `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, then redeploy.
+
+Customers: "Continue with Google" appears on sign-in and sign-up. Admins: put your Gmail in `ADMIN_EMAIL` (comma-separated for several) and sign in with Google; you land on `/admin`. Staff created in Admin → Staff with a Gmail address can also use Google. A customer who first registered with email + password must keep using the password (accounts with an unverified email are not merged, to prevent account takeover).
 
 ## Local development
 

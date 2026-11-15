@@ -17,17 +17,15 @@ export default async function ContactPage() {
     <>
       <PageHeader
         eyebrow="Visit & contact"
-        lines={["Find us in", <em key="a" className="text-wine">Arera Colony</em>]}
+        title={<>Find us in <em className="text-brand">Arera Colony</em></>}
         intro="We're opposite the Railway Housing Society in Shree Tower, E-7. Look for the Opal sign at the glass doors."
       />
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-        <ClipReveal className="relative aspect-[16/9] md:aspect-[21/9]">
+      <div className="mx-auto max-w-[1280px] px-5 md:px-8">
+        <ClipReveal className="relative aspect-[16/9] overflow-hidden rounded-[2rem] md:aspect-[21/9]">
           <Photo name="reception-front" sizes="100vw" position="50% 60%" />
         </ClipReveal>
       </div>
-      <div className="-mt-10">
-        <VisitSection s={s} />
-      </div>
+      <VisitSection s={s} />
     </>
   );
 }

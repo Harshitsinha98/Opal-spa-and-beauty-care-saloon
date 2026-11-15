@@ -23,7 +23,7 @@ export function BookingTable({ rows, hideDate, base = "/admin/bookings" }: { row
             <tr key={b.id} className="border-b border-line/70 last:border-0 hover:bg-ivory/60">
               {!hideDate && <td className="whitespace-nowrap px-5 py-3">{dateLabel(b.date, { year: undefined })}</td>}
               <td className="whitespace-nowrap px-5 py-3">
-                <Link href={`${base}/${b.id}`} className="font-medium text-wine underline-offset-4 hover:underline">
+                <Link href={`${base}/${b.id}`} className="font-medium text-brand underline-offset-4 hover:underline">
                   {minutesToLabel(b.startMin)}
                 </Link>
                 <span className="block text-xs text-mute">to {minutesToLabel(b.endMin)}</span>

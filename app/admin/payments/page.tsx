@@ -84,7 +84,7 @@ export default async function AdminPayments({ searchParams }: { searchParams: Pr
               <option value="refund">Refunds</option>
             </select>
           </label>
-          <button className="rounded-md bg-plum px-4 py-2.5 text-sm text-paper">Filter</button>
+          <button className="rounded-md bg-brand px-4 py-2.5 text-sm text-paper">Filter</button>
         </form>
       </Card>
       <Card>
@@ -106,11 +106,11 @@ export default async function AdminPayments({ searchParams }: { searchParams: Pr
                   <td className="whitespace-nowrap px-5 py-3">{dateTimeLabel(p.createdAt)}</td>
                   <td className="px-5 py-3">
                     {p.kind === "booking" ? (
-                      <Link className="text-wine hover:underline" href={`/admin/bookings/${p.refId}`}>
+                      <Link className="text-brand hover:underline" href={`/admin/bookings/${p.refId}`}>
                         {p.refCode}
                       </Link>
                     ) : (
-                      <Link className="text-wine hover:underline" href={`/admin/orders?q=${p.refCode}&status=all`}>
+                      <Link className="text-brand hover:underline" href={`/admin/orders?q=${p.refCode}&status=all`}>
                         {p.refCode}
                       </Link>
                     )}

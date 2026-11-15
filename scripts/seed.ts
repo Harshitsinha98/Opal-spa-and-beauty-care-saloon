@@ -127,28 +127,34 @@ async function main() {
     console.log("products: inserted demo products");
   }
 
-  const email = process.env.ADMIN_EMAIL?.toLowerCase().trim();
+  // ADMIN_EMAIL can be one email or a comma-separated list.
+  const emails = (process.env.ADMIN_EMAIL ?? "").split(",").map((e) => e.trim().toLowerCase()).filter(Boolean);
   const password = process.env.ADMIN_PASSWORD;
-  if (email && password) {
+  if (!emails.length) console.log("admin: ADMIN_EMAIL not set, skipped");
+  for (const email of emails) {
     const u = await db.query.user.findFirst({ where: eq(schema.user.email, email) });
-    if (!u) {
-      if (password.length < 8) throw new Error("ADMIN_PASSWORD must be at least 8 characters");
-      const id = crypto.randomUUID();
-      await db.insert(schema.user).values({ id, name: "Salon Admin", email, emailVerified: true, role: "admin" });
-      await db.insert(schema.account).values({
-        id: crypto.randomUUID(),
-        accountId: id,
-        providerId: "credential",
-        userId: id,
-        password: await hashPassword(password),
-      });
-      console.log(`admin: created ${email}`);
-    } else if (u.role !== "admin") {
-      await db.update(schema.user).set({ role: "admin" }).where(eq(schema.user.id, u.id));
-      console.log(`admin: promoted ${email}`);
+    if (u) {
+      if (u.role !== "admin") {
+        await db.update(schema.user).set({ role: "admin" }).where(eq(schema.user.id, u.id));
+        console.log(`admin: promoted ${email}`);
+      }
+      continue;
     }
-  } else {
-    console.log("admin: ADMIN_EMAIL/ADMIN_PASSWORD not set, skipped");
+    if (!password) {
+      console.log(`admin: ${email} will become admin on first Google sign-in (no ADMIN_PASSWORD set)`);
+      continue;
+    }
+    if (password.length < 8) throw new Error("ADMIN_PASSWORD must be at least 8 characters");
+    const id = crypto.randomUUID();
+    await db.insert(schema.user).values({ id, name: "Salon Admin", email, emailVerified: true, role: "admin" });
+    await db.insert(schema.account).values({
+      id: crypto.randomUUID(),
+      accountId: id,
+      providerId: "credential",
+      userId: id,
+      password: await hashPassword(password),
+    });
+    console.log(`admin: created ${email}`);
   }
 }
 
