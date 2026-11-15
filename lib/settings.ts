@@ -50,6 +50,13 @@ export const settingsSchema = z.object({
       cashEnabled: z.boolean().default(true),
     })
     .prefault({}),
+  reschedule: z
+    .object({
+      allowCustomer: z.boolean().default(true),
+      cutoffHours: z.number().min(0).max(168).default(12), // must be at least this many hours before the visit
+      maxPerBooking: z.number().int().min(1).max(10).default(2),
+    })
+    .prefault({}),
   cancellation: z
     .object({
       allowCustomerCancel: z.boolean().default(true),

@@ -8,6 +8,13 @@
       "when": 1794677551577,
       "tag": "0000_init",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794730766937,
+      "tag": "0001_booking_reschedule_count",
+      "breakpoints": true
     }
   ]
 }

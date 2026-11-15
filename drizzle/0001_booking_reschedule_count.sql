@@ -1,0 +1,1 @@
+ALTER TABLE "booking" ADD COLUMN "reschedule_count" integer DEFAULT 0 NOT NULL;

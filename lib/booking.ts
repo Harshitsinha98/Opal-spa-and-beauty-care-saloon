@@ -135,3 +135,20 @@ export async function restoreStock(tx: DbOrTx, orderIds: string[]) {
       .where(eq(schema.product.id, it.productId));
   }
 }
+
+/** Whether a customer may move this booking themselves, and if not, why. */
+export function rescheduleCheck(
+  b: Pick<schema.Booking, "date" | "startMin" | "status" | "rescheduleCount">,
+  s: Settings,
+  now = new Date(),
+): { ok: true; left: number } | { ok: false; reason: string } {
+  const r = s.reschedule;
+  if (!r.allowCustomer) return { ok: false, reason: "Online rescheduling is off. Please call the salon." };
+  if (b.status !== "confirmed") return { ok: false, reason: "Only confirmed bookings can be moved." };
+  const hoursLeft = (istToDate(b.date, b.startMin).getTime() - now.getTime()) / 3_600_000;
+  if (hoursLeft < r.cutoffHours)
+    return { ok: false, reason: r.cutoffHours > 0 ? `Changes close ${r.cutoffHours} hours before your visit. Please call the salon.` : "This visit has started." };
+  if (b.rescheduleCount >= r.maxPerBooking)
+    return { ok: false, reason: `This booking has already been moved ${r.maxPerBooking} time${r.maxPerBooking > 1 ? "s" : ""}. Please call the salon.` };
+  return { ok: true, left: r.maxPerBooking - b.rescheduleCount };
+}

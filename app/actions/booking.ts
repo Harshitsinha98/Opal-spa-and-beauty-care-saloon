@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { db, schema } from "@/lib/db";
 import { getSettings, availableMethods } from "@/lib/settings";
 import { getCurrentUser } from "@/lib/session";
-import { cancellationQuote, checkDate, expireStaleHolds, getSlots, lockDate } from "@/lib/booking";
+import { cancellationQuote, checkDate, expireStaleHolds, getSlots, lockDate, rescheduleCheck } from "@/lib/booking";
 import { makeCode } from "@/lib/codes";
 import { isValidYMD } from "@/lib/time";
 import { createRazorpayOrder, publicKeyId, refundPayment, verifyCheckoutSignature } from "@/lib/razorpay";
@@ -320,4 +320,85 @@ export async function cancelMyBookingAction(bookingId: string): Promise<Result<{
   });
   revalidatePath("/account");
   return { ok: true, refund: refundId ? q.refund : 0, fee: b.paymentStatus === "paid" ? q.fee : 0 };
+}
+
+/* ----------------------------- Customer reschedule ----------------------------- */
+
+async function myBooking(bookingId: string) {
+  const user = await getCurrentUser();
+  if (!user) return null;
+  if (!/^[0-9a-f-]{36}$/i.test(bookingId)) return null;
+  return db.query.booking.findFirst({ where: and(eq(schema.booking.id, bookingId), eq(schema.booking.userId, user.id)) }) ?? null;
+}
+
+/** Open times for moving one of my bookings (same length, same therapist). */
+export async function myRescheduleSlotsAction(bookingId: string, date: string) {
+  if (!isValidYMD(date)) return { ok: false as const, error: "Pick a date", slots: [] };
+  const b = await myBooking(bookingId);
+  if (!b) return { ok: false as const, error: "Booking not found", slots: [] };
+  const s = await getSettings();
+  const can = rescheduleCheck(b, s);
+  if (!can.ok) return { ok: false as const, error: can.reason, slots: [] };
+  const check = checkDate(date, s);
+  if (!check.ok) return { ok: false as const, error: check.reason, slots: [] };
+  await expireStaleHolds();
+  const slots = await getSlots(date, b.endMin - b.startMin, s, { staffId: b.staffId, excludeBookingId: b.id });
+  // Hide the booking's current time so "moving" to it isn't offered.
+  return { ok: true as const, slots: slots.filter((x) => !(date === b.date && x.start === b.startMin)) };
+}
+
+export async function rescheduleMyBookingAction(bookingId: string, date: string, startMin: number): Promise<Result> {
+  if (!isValidYMD(date) || !Number.isInteger(startMin) || startMin < 0 || startMin > 1439) return { ok: false, error: "Pick a new time." };
+  const b = await myBooking(bookingId);
+  if (!b) return { ok: false, error: "Booking not found." };
+  const s = await getSettings();
+  const can = rescheduleCheck(b, s);
+  if (!can.ok) return { ok: false, error: can.reason };
+  const check = checkDate(date, s);
+  if (!check.ok) return { ok: false, error: check.reason };
+  const duration = b.endMin - b.startMin;
+  await expireStaleHolds();
+  try {
+    await db.transaction(async (tx) => {
+      // Lock both days in a fixed order so two people moving bookings can't deadlock.
+      for (const d of [...new Set([date, b.date])].sort()) await lockDate(tx, d);
+      const slots = await getSlots(date, duration, s, { staffId: b.staffId, excludeBookingId: b.id, tx });
+      if (!slots.find((x) => x.start === startMin)?.available) throw new Error("SLOT_TAKEN");
+      const res = await tx
+        .update(schema.booking)
+        .set({ date, startMin, endMin: startMin + duration, rescheduleCount: b.rescheduleCount + 1, updatedAt: new Date() })
+        .where(and(eq(schema.booking.id, b.id), eq(schema.booking.status, "confirmed"), eq(schema.booking.rescheduleCount, b.rescheduleCount)))
+        .returning({ id: schema.booking.id });
+      if (!res.length) throw new Error("CHANGED");
+    });
+  } catch (e) {
+    const m = (e as Error).message;
+    if (m === "SLOT_TAKEN") return { ok: false, error: "That time was just taken. Please pick another." };
+    if (m === "CHANGED") return { ok: false, error: "This booking was changed elsewhere. Refresh and try again." };
+    console.error("reschedule", e);
+    return { ok: false, error: "Could not move the booking. Please try again." };
+  }
+  revalidatePath("/account");
+  revalidatePath("/admin/bookings");
+  return { ok: true };
+}
+
+/* --------------------------------- Profile --------------------------------- */
+
+export async function updateProfileAction(input: { name: string; phone: string }): Promise<Result> {
+  const user = await getCurrentUser();
+  if (!user) return { ok: false, error: "Please sign in." };
+  const p = z
+    .object({
+      name: z.string().trim().min(2, "Enter your name").max(80),
+      phone: z.union([z.literal(""), phoneSchema]),
+    })
+    .safeParse(input);
+  if (!p.success) return { ok: false, error: p.error.issues[0]?.message ?? "Check your details" };
+  await db
+    .update(schema.user)
+    .set({ name: p.data.name, phone: p.data.phone || null, updatedAt: new Date() })
+    .where(eq(schema.user.id, user.id));
+  revalidatePath("/account");
+  return { ok: true };
 }
