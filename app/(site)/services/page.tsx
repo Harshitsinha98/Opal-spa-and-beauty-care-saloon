@@ -22,7 +22,7 @@ export default async function ServicesPage() {
         eyebrow="Services & prices"
         title={
           <>
-            Every treatment, <em className="text-accent">clearly priced</em>
+            Every treatment, <em className="text-brand">clearly priced</em>
           </>
         }
         intro="Tap any card to book it, or combine a few on the booking page. Prices are per person."

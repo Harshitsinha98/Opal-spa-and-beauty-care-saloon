@@ -35,7 +35,7 @@ export function VisitSection({ s }: { s: Settings }) {
         <Reveal className="p-6 md:p-10 lg:col-span-5">
           <p className="eyebrow">Visit us</p>
           <h2 className="display mt-3 text-4xl md:text-5xl">
-            Arera Colony, <em className="text-accent">Bhopal</em>
+            Arera Colony, <em className="text-brand">Bhopal</em>
           </h2>
           <dl className="mt-8 space-y-5">
             {rows.map((r) => (

@@ -134,14 +134,14 @@ export function AuthForm({ mode, googleEnabled }: { mode: "sign-in" | "sign-up";
         {mode === "sign-in" ? (
           <>
             New here?{" "}
-            <Link href={`/sign-up?next=${encodeURIComponent(next)}`} className="text-accent underline underline-offset-4">
+            <Link href={`/sign-up?next=${encodeURIComponent(next)}`} className="text-brand underline underline-offset-4">
               Create an account
             </Link>
           </>
         ) : (
           <>
             Already have an account?{" "}
-            <Link href={`/sign-in?next=${encodeURIComponent(next)}`} className="text-accent underline underline-offset-4">
+            <Link href={`/sign-in?next=${encodeURIComponent(next)}`} className="text-brand underline underline-offset-4">
               Sign in
             </Link>
           </>

@@ -5,7 +5,7 @@ import { Carousel } from "../ui/Carousel";
 import { Arrow } from "../Arrow";
 import { Stars } from "../Stars";
 
-const AVATAR_TONES = ["bg-brand-50 text-brand", "bg-accent-50 text-accent-600", "bg-ivory text-ink"];
+const AVATAR_TONES = ["bg-brand-50 text-brand", "bg-accent-50 text-ink", "bg-ivory text-ink"];
 
 
 export function ReviewsCarousel({ reviews, rating, count, mapsUrl }: { reviews: Review[]; rating: number; count: number; mapsUrl: string }) {
@@ -33,7 +33,7 @@ export function ReviewsCarousel({ reviews, rating, count, mapsUrl }: { reviews: 
           {reviews.map((r, i) => (
             <figure key={i} className="card flex h-full flex-col p-6">
               <div className="flex items-center justify-between">
-                <span className="font-display text-4xl leading-none text-accent" aria-hidden>&ldquo;</span>
+                <span className="font-display text-4xl leading-none text-brand" aria-hidden>&ldquo;</span>
                 <span className="flex items-center gap-1.5 text-xs text-mute">
                   <GoogleG /> {r.when}
                 </span>

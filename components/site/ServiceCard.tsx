@@ -28,7 +28,7 @@ export function ServiceCard({ s }: { s: ServiceCardData }) {
         />
         <div className="absolute inset-x-0 top-0 flex justify-between p-3">
           <span className="pill bg-white/90 text-ink backdrop-blur">{s.category}</span>
-          {s.featured && <span className="pill bg-accent text-white">Popular</span>}
+          {s.featured && <span className="pill bg-accent text-ink">Popular</span>}
         </div>
         <span className="pill absolute bottom-3 left-3 bg-ink/75 text-white backdrop-blur">
           <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>

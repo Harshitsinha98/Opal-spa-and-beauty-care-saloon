@@ -5,6 +5,7 @@ import { REVIEWS } from "@/lib/reviews";
 import { hoursText } from "@/lib/format";
 import { serviceImage } from "@/lib/service-image";
 import { Hero } from "@/components/site/Hero";
+import { Ticker } from "@/components/site/Ticker";
 import { ServicesCarousel } from "@/components/site/ServicesCarousel";
 import { ProductsCarousel } from "@/components/site/ProductsCarousel";
 import { ReviewsCarousel } from "@/components/site/ReviewsCarousel";
@@ -14,11 +15,12 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Photo } from "@/components/Photo";
 import { Arrow } from "@/components/Arrow";
 
-const FEATURES = [
-  { title: "Clean & hygienic", text: "The word guests use most in their Google reviews.", icon: "M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z M9 12l2 2 4-4" },
-  { title: "Trained therapists", text: "Reviewers call the team caring, professional and well mannered.", icon: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M4 21a8 8 0 0 1 16 0" },
-  { title: "Value for money", text: "Clear prices on every treatment, before you book.", icon: "M4 7h16v10H4z M12 12m-2.5 0a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0" },
-  { title: "Book in 2 minutes", text: "Live slots, instant confirmation, cancel from your account.", icon: "M5 5h14v15H5z M5 9h14 M9 3v4 M15 3v4" },
+// Short phrases quoted word for word from the Google reviews in lib/reviews.ts
+const QUOTES = [
+  { text: "very caring and well trained therapists", who: "Azhar ali", tone: "bg-brand text-white", sub: "text-white/70" },
+  { text: "Value for money, and best for relaxation.", who: "Dr Hemant Soni", tone: "bg-accent text-ink", sub: "text-ink/60" },
+  { text: "staff front desk person and management all are good", who: "Muskan Khare", tone: "bg-white text-ink border border-line", sub: "text-mute" },
+  { text: "very hygienic must visit", who: "Yasmeen Khan", tone: "bg-ink text-white", sub: "text-white/60" },
 ];
 
 export default async function HomePage() {
@@ -41,6 +43,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero rating={s.business.googleRating} count={s.business.googleReviewCount} hours={hoursText(s.hours)} />
+      {services.length > 0 && <Ticker items={services.slice(0, 10).map((x) => x.name)} />}
 
       {/* Services */}
       {services.length > 0 && (
@@ -49,7 +52,7 @@ export default async function HomePage() {
             eyebrow="Services"
             title={
               <>
-                Treatments for <em className="text-accent">body, skin &amp; hair</em>
+                Treatments for <em className="text-brand">body, skin &amp; hair</em>
               </>
             }
             sub="Clear prices and durations. Tap any card to book it."
@@ -65,7 +68,7 @@ export default async function HomePage() {
 
       {/* Why Opal: bento */}
       <section className="mx-auto max-w-[1280px] px-5 pb-20 md:px-8 md:pb-28">
-        <SectionHead eyebrow="Why Opal" title={<>A calm place, <em className="text-accent">run with care</em></>} />
+        <SectionHead eyebrow="Why Opal" title={<>In our guests&rsquo; <em className="text-brand">own words</em></>} sub="Quoted as written in their Google reviews." />
         <div className="grid gap-4 md:grid-cols-4 md:grid-rows-2">
           <Reveal className="relative min-h-80 overflow-hidden rounded-[2rem] md:col-span-2 md:row-span-2">
             <Photo name="reception" sizes="(min-width: 768px) 50vw, 100vw" />
@@ -75,17 +78,13 @@ export default async function HomePage() {
               <p className="mt-2 max-w-sm text-white/75">Opposite Railway Housing Society. Massage rooms, a skin and hair station, and a lounge to wait in.</p>
             </div>
           </Reveal>
-          {FEATURES.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.06} className={i === 1 ? "card bg-accent-50 p-6" : i === 2 ? "card bg-brand-50 p-6" : "card p-6"}>
-              <span className={`flex h-11 w-11 items-center justify-center rounded-xl ${i === 1 ? "bg-accent text-white" : "bg-brand text-white"}`}>
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                  {f.icon.split(" M").map((d, k) => (
-                    <path key={k} d={k ? `M${d}` : d} />
-                  ))}
-                </svg>
+          {QUOTES.map((q, i) => (
+            <Reveal key={q.who + i} delay={i * 0.06} className={`flex flex-col justify-between rounded-[2rem] p-7 ${q.tone}`}>
+              <span className="display text-5xl leading-none opacity-60" aria-hidden>
+                &ldquo;
               </span>
-              <p className="display mt-5 text-xl">{f.title}</p>
-              <p className="mt-1.5 text-sm leading-relaxed text-mute">{f.text}</p>
+              <p className="display mt-2 text-2xl leading-tight">{q.text}</p>
+              <p className={`mt-6 text-sm ${q.sub}`}>{q.who}, on Google</p>
             </Reveal>
           ))}
         </div>
@@ -99,7 +98,7 @@ export default async function HomePage() {
               eyebrow="Shop · pickup at the salon"
               title={
                 <>
-                  Take your routine <em className="text-accent">home</em>
+                  Take your routine <em className="text-brand">home</em>
                 </>
               }
               sub="Order online, pick up from the front desk. Pay online or at pickup."
@@ -128,13 +127,13 @@ export default async function HomePage() {
 
       {/* Reviews */}
       <section id="reviews" className="mx-auto max-w-[1280px] scroll-mt-28 px-5 py-20 md:px-8 md:py-28">
-        <SectionHead eyebrow="Reviews" title={<>What guests say <em className="text-accent">on Google</em></>} />
+        <SectionHead eyebrow="Reviews" title={<>What guests say <em className="text-brand">on Google</em></>} />
         <ReviewsCarousel reviews={REVIEWS} rating={s.business.googleRating} count={s.business.googleReviewCount} mapsUrl={s.business.mapsUrl} />
       </section>
 
       {/* How it works */}
       <section className="mx-auto max-w-[1280px] px-5 pb-20 md:px-8 md:pb-28">
-        <div className="relative overflow-hidden rounded-[2rem] bg-brand text-white">
+        <div className="relative overflow-hidden rounded-[2rem] bg-ink text-white">
           <div className="dots pointer-events-none absolute inset-0 opacity-40" aria-hidden />
           <div className="relative grid gap-10 p-8 md:p-14 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-5">
@@ -158,7 +157,7 @@ export default async function HomePage() {
                 ["Pay your way", s.payments.cashEnabled ? "Online now, or at the salon." : "UPI, card or net banking."],
               ].map(([t, d], i) => (
                 <Reveal as="li" key={t} delay={i * 0.08} className="rounded-3xl bg-white/10 p-6 backdrop-blur">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent font-display font-bold">{i + 1}</span>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent font-display font-bold text-ink">{i + 1}</span>
                   <p className="display mt-6 text-2xl">{t}</p>
                   <p className="mt-1.5 text-sm text-white/70">{d}</p>
                 </Reveal>
@@ -172,7 +171,7 @@ export default async function HomePage() {
       <section className="mx-auto max-w-[1280px] px-5 pb-8 md:px-8">
         <SectionHead
           eyebrow="Gallery"
-          title={<>Take a look <em className="text-accent">inside</em></>}
+          title={<>Take a look <em className="text-brand">inside</em></>}
           action={
             <Link href="/gallery" className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold hover:border-ink">
               Full gallery <Arrow />

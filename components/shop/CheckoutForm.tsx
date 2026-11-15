@@ -124,7 +124,7 @@ export function CheckoutForm({ methods, businessName, address }: { methods: ("on
       {lines.length === 0 ? (
         <p className="mt-10 text-mute">
           Your bag is empty.{" "}
-          <Link href="/shop" className="text-accent underline">
+          <Link href="/shop" className="text-brand underline">
             Visit the shop
           </Link>
         </p>
@@ -165,7 +165,7 @@ export function CheckoutForm({ methods, businessName, address }: { methods: ("on
                   <div className="grid gap-3 sm:grid-cols-2">
                     {methods.map((m) => (
                       <label key={m} className={clsx("flex cursor-pointer items-start gap-3 rounded-2xl border p-5", method === m ? "border-brand bg-ivory" : "border-line bg-white")}>
-                        <input type="radio" className="mt-1 accent-[#0d5e52]" checked={method === m} onChange={() => setMethod(m)} />
+                        <input type="radio" className="mt-1 accent-[#d6336c]" checked={method === m} onChange={() => setMethod(m)} />
                         <span>
                           <span className="block font-medium">{m === "online" ? "Pay now" : "Pay at pickup"}</span>
                           <span className="text-sm text-mute">{m === "online" ? "UPI, cards, net banking via Razorpay" : "Cash, UPI or card at the counter"}</span>

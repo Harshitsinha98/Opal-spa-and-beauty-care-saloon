@@ -6,15 +6,15 @@ export function OpalMark({ className, plain }: { className?: string; plain?: boo
     return (
       <svg viewBox="0 0 40 48" aria-hidden className={clsx("shrink-0", className)}>
         <ellipse cx="20" cy="24" rx="16" ry="20" fill="none" stroke="currentColor" strokeWidth="3" />
-        <path d="M10.5 17.5c3.6-6 15.4-6 19 0" fill="none" stroke="#e8693c" strokeWidth="3" strokeLinecap="round" />
+        <path d="M10.5 17.5c3.6-6 15.4-6 19 0" fill="none" stroke="#ffb020" strokeWidth="3" strokeLinecap="round" />
       </svg>
     );
   }
   return (
     <svg viewBox="0 0 40 40" aria-hidden className={clsx("shrink-0", className)}>
-      <rect width="40" height="40" rx="12" fill="#0d5e52" />
+      <rect width="40" height="40" rx="12" fill="#d6336c" />
       <ellipse cx="20" cy="21" rx="9.5" ry="12" fill="none" stroke="#fff" strokeWidth="2.6" />
-      <path d="M14.2 16.6c2.2-3.6 9.4-3.6 11.6 0" fill="none" stroke="#e8693c" strokeWidth="2.6" strokeLinecap="round" />
+      <path d="M14.2 16.6c2.2-3.6 9.4-3.6 11.6 0" fill="none" stroke="#ffb020" strokeWidth="2.6" strokeLinecap="round" />
     </svg>
   );
 }

@@ -72,7 +72,7 @@ export default async function AdminDashboard() {
         ))}
       </div>
 
-      <Card title="Today's schedule" className="mt-6" action={<Link href="/admin/bookings" className="text-xs text-accent underline">All bookings</Link>}>
+      <Card title="Today's schedule" className="mt-6" action={<Link href="/admin/bookings" className="text-xs text-brand underline">All bookings</Link>}>
         {todayList.length === 0 ? <p className="text-sm text-mute">No bookings today.</p> : <BookingTable rows={todayList} hideDate />}
       </Card>
 

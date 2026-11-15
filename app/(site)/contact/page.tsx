@@ -17,7 +17,7 @@ export default async function ContactPage() {
     <>
       <PageHeader
         eyebrow="Visit & contact"
-        title={<>Find us in <em className="text-accent">Arera Colony</em></>}
+        title={<>Find us in <em className="text-brand">Arera Colony</em></>}
         intro="We're opposite the Railway Housing Society in Shree Tower, E-7. Look for the Opal sign at the glass doors."
       />
       <div className="mx-auto max-w-[1280px] px-5 md:px-8">

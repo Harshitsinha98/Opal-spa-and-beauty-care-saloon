@@ -220,7 +220,7 @@ export function BookingWizard(p: Props) {
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE }}>
           <p className="eyebrow">Booking {done.code}</p>
           <h1 className="display mt-5 text-5xl md:text-7xl">
-            See you <em className="text-accent">soon.</em>
+            See you <em className="text-brand">soon.</em>
           </h1>
           <div className="mt-10 card grid gap-6 p-6 text-sm md:grid-cols-3">
             <div>
@@ -262,10 +262,10 @@ export function BookingWizard(p: Props) {
         <div>
           <p className="eyebrow">Book a visit</p>
           <h1 className="display mt-4 text-4xl md:text-6xl">
-            {stepName === "Treatments" && <>What would you <em className="text-accent">like?</em></>}
-            {stepName === "Therapist" && <>Anyone in <em className="text-accent">mind?</em></>}
-            {stepName === "Time" && <>Pick a <em className="text-accent">time</em></>}
-            {stepName === "Details" && <>Almost <em className="text-accent">done</em></>}
+            {stepName === "Treatments" && <>What would you <em className="text-brand">like?</em></>}
+            {stepName === "Therapist" && <>Anyone in <em className="text-brand">mind?</em></>}
+            {stepName === "Time" && <>Pick a <em className="text-brand">time</em></>}
+            {stepName === "Details" && <>Almost <em className="text-brand">done</em></>}
           </h1>
         </div>
         <ol className="flex gap-2 text-xs" aria-label="Steps">
@@ -488,7 +488,7 @@ export function BookingWizard(p: Props) {
                                 method === m ? "border-brand bg-ivory" : "border-line bg-white hover:border-brand/50",
                               )}
                             >
-                              <input type="radio" name="method" className="mt-1 accent-[#0d5e52]" checked={method === m} onChange={() => setMethod(m)} />
+                              <input type="radio" name="method" className="mt-1 accent-[#d6336c]" checked={method === m} onChange={() => setMethod(m)} />
                               <span>
                                 <span className="block font-medium">{m === "online" ? "Pay now" : "Pay at the salon"}</span>
                                 <span className="text-sm text-mute">{m === "online" ? "UPI, cards, net banking via Razorpay" : "Cash, UPI or card after your session"}</span>

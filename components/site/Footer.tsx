@@ -22,7 +22,7 @@ export function Footer({ s }: { s: Settings }) {
             </div>
             <Link
               href="/book"
-              className="inline-flex w-fit items-center gap-2 rounded-full bg-accent px-7 py-4 font-semibold text-white transition-colors hover:bg-accent-600"
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-accent px-7 py-4 font-semibold text-ink transition-colors hover:bg-accent-600"
             >
               Book a visit <Arrow />
             </Link>

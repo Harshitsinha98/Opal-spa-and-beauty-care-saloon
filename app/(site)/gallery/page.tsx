@@ -32,7 +32,7 @@ export default function GalleryPage() {
         eyebrow="Gallery"
         title={
           <>
-            Inside <em className="text-accent">Opal</em>
+            Inside <em className="text-brand">Opal</em>
           </>
         }
         intro="Every photo on this site was taken inside the salon at Shree Tower. No stock images. Tap a photo to enlarge it."

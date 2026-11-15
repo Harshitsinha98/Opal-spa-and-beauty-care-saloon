@@ -18,7 +18,7 @@ export default async function ShopPage() {
         eyebrow="Shop · pickup only"
         title={
           <>
-            Take your routine <em className="text-accent">home</em>
+            Take your routine <em className="text-brand">home</em>
           </>
         }
         intro="Order here, pay online or at the counter, and pick up from the front desk in Arera Colony. We don't ship."

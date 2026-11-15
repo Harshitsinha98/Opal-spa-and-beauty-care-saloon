@@ -65,7 +65,7 @@ export function PanelShell({
             <p className="truncate font-medium">{user.name}</p>
             <p className="truncate text-mute">{user.email}</p>
             <div className="mt-3 flex gap-3">
-              <Link href="/" className="text-accent underline">
+              <Link href="/" className="text-brand underline">
                 View site
               </Link>
               <button

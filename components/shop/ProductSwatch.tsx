@@ -19,8 +19,8 @@ export function ProductSwatch({ name, tone, image, small }: { name: string; tone
         <rect x="38" y="96" width="44" height="56" rx="6" fill="#ffffff" opacity="0.95" />
         {!small && (
           <>
-            <text x="60" y="122" textAnchor="middle" fontFamily="system-ui, sans-serif" fontWeight="700" fontSize="13" letterSpacing="-0.5" fill="#0d5e52">opal</text>
-            <rect x="52" y="130" width="16" height="2.5" rx="1.25" fill="#e8693c" />
+            <text x="60" y="122" textAnchor="middle" fontFamily="system-ui, sans-serif" fontWeight="700" fontSize="13" letterSpacing="-0.5" fill="#d6336c">opal</text>
+            <rect x="52" y="130" width="16" height="2.5" rx="1.25" fill="#ffb020" />
           </>
         )}
         <defs>

@@ -43,7 +43,7 @@ export async function payWithRazorpay(p: CheckoutPayload, businessName: string):
       name: businessName,
       description: p.description.slice(0, 250),
       prefill: { name: p.name, email: p.email, contact: p.phone },
-      theme: { color: "#0d5e52" },
+      theme: { color: "#d6336c" },
       handler: (r: RzpResponse) => {
         settled = true;
         resolve(r);

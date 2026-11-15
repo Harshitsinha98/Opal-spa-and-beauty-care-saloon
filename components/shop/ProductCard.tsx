@@ -27,7 +27,7 @@ export function ProductCard({ p }: { p: ProductCardData }) {
         </div>
         <div className="absolute left-3 top-3 flex gap-2">
           {soldOut && <span className="pill bg-white text-mute">Sold out</span>}
-          {!soldOut && p.stock <= 3 && <span className="pill bg-accent text-white">Only {p.stock} left</span>}
+          {!soldOut && p.stock <= 3 && <span className="pill bg-accent text-ink">Only {p.stock} left</span>}
           {!soldOut && p.stock > 3 && <span className="pill bg-white/90 text-brand">In stock</span>}
         </div>
       </div>

@@ -5,24 +5,28 @@
  * Jade complements the pink/rose light in the salon photos instead of fighting it.
  */
 @theme {
-  --color-paper: #f7f6f2;
-  --color-ivory: #efede6;
-  --color-sand: #e5e2d8;
-  --color-line: #e4e1d8;
-  --color-ink: #0f1f1b;
-  --color-mute: #5d6a65;
+  /*
+   * Opal palette: raspberry pink (matches the salon's own pink lighting), marigold
+   * (the flower garlands on the lounge sofa) and a deep aubergine ink, on warm blush white.
+   */
+  --color-paper: #fff8f5;
+  --color-ivory: #fdeee8;
+  --color-sand: #f6dfd6;
+  --color-line: #f0dcd4;
+  --color-ink: #1d1220;
+  --color-mute: #6f5d67;
 
-  --color-brand: #0d5e52;
-  --color-brand-700: #094a40;
-  --color-brand-900: #06302a;
-  --color-brand-100: #cfe6df;
-  --color-brand-50: #e7f3ef;
+  --color-brand: #d6336c;
+  --color-brand-700: #b3225a;
+  --color-brand-900: #6e1238;
+  --color-brand-100: #ffd3e1;
+  --color-brand-50: #ffecf2;
 
-  --color-accent: #e8693c;
-  --color-accent-600: #d2582c;
-  --color-accent-50: #fdeee6;
+  --color-accent: #ffb020;
+  --color-accent-600: #f29a00;
+  --color-accent-50: #fff3d6;
 
-  --color-gold: #f2a93b;
+  --color-gold: #ffaa00;
   --color-ok: #2f7d55;
   --color-warn: #b7791f;
   --color-bad: #c2413a;
@@ -32,8 +36,8 @@
 
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --shadow-card: 0 1px 2px rgba(15, 31, 27, 0.04), 0 12px 32px -12px rgba(15, 31, 27, 0.14);
-  --shadow-lift: 0 2px 4px rgba(15, 31, 27, 0.05), 0 24px 48px -16px rgba(15, 31, 27, 0.22);
+  --shadow-card: 0 1px 2px rgba(29, 18, 32, 0.04), 0 12px 32px -14px rgba(29, 18, 32, 0.14);
+  --shadow-lift: 0 2px 4px rgba(29, 18, 32, 0.05), 0 24px 48px -16px rgba(29, 18, 32, 0.22);
 
   --animate-marquee: marquee 40s linear infinite;
   @keyframes marquee {
@@ -77,6 +81,14 @@ html.lenis, html.lenis body { height: auto; }
 }
 .display em { font-style: normal; }
 
+/* Marker-pen highlight behind a word or phrase */
+.mark {
+  background: linear-gradient(transparent 58%, var(--color-accent) 58%, var(--color-accent) 92%, transparent 92%);
+  padding: 0 0.08em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 .pill {
   display: inline-flex;
   align-items: center;
@@ -103,8 +115,8 @@ html.lenis, html.lenis body { height: auto; }
 /* Soft colour wash used behind page headers and the hero */
 .wash {
   background:
-    radial-gradient(60% 70% at 85% 10%, rgba(232, 105, 60, 0.13), transparent 60%),
-    radial-gradient(55% 60% at 5% 0%, rgba(13, 94, 82, 0.12), transparent 60%);
+    radial-gradient(60% 70% at 85% 10%, rgba(255, 176, 32, 0.13), transparent 60%),
+    radial-gradient(55% 60% at 5% 0%, rgba(214, 51, 108, 0.12), transparent 60%);
 }
 
 .dots {
@@ -114,7 +126,7 @@ html.lenis, html.lenis body { height: auto; }
 
 .prose-legal h2 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; font-size: 1.6rem; line-height: 1.15; margin: 2.5rem 0 0.8rem; }
 .prose-legal h3 { font-weight: 700; margin: 1.6rem 0 0.4rem; }
-.prose-legal p, .prose-legal li { color: #34423e; line-height: 1.75; }
+.prose-legal p, .prose-legal li { color: #3e2f3a; line-height: 1.75; }
 .prose-legal p + p { margin-top: 0.9rem; }
 .prose-legal ul { list-style: disc; padding-left: 1.25rem; margin: 0.6rem 0; }
 .prose-legal li + li { margin-top: 0.35rem; }
@@ -128,7 +140,7 @@ html.lenis, html.lenis body { height: auto; }
   padding: 0.72rem 0.95rem;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
-.field:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 4px rgba(13, 94, 82, 0.12); }
+.field:focus { outline: none; border-color: var(--color-brand); box-shadow: 0 0 0 4px rgba(214, 51, 108, 0.12); }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }

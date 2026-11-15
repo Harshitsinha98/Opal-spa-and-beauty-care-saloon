@@ -106,11 +106,11 @@ export default async function AdminPayments({ searchParams }: { searchParams: Pr
                   <td className="whitespace-nowrap px-5 py-3">{dateTimeLabel(p.createdAt)}</td>
                   <td className="px-5 py-3">
                     {p.kind === "booking" ? (
-                      <Link className="text-accent hover:underline" href={`/admin/bookings/${p.refId}`}>
+                      <Link className="text-brand hover:underline" href={`/admin/bookings/${p.refId}`}>
                         {p.refCode}
                       </Link>
                     ) : (
-                      <Link className="text-accent hover:underline" href={`/admin/orders?q=${p.refCode}&status=all`}>
+                      <Link className="text-brand hover:underline" href={`/admin/orders?q=${p.refCode}&status=all`}>
                         {p.refCode}
                       </Link>
                     )}

@@ -47,7 +47,7 @@ export function CartDrawer() {
               {lines.length === 0 ? (
                 <div className="py-16 text-center text-mute">
                   <p>Nothing here yet.</p>
-                  <Link href="/shop" onClick={() => setOpen(false)} className="link-u mt-3 inline-block text-accent">
+                  <Link href="/shop" onClick={() => setOpen(false)} className="link-u mt-3 inline-block text-brand">
                     Browse the shop
                   </Link>
                 </div>
