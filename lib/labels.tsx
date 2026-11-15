@@ -1,14 +1,14 @@
 export const BOOKING_STATUS: Record<string, { label: string; tone: string }> = {
   pending_payment: { label: "Awaiting payment", tone: "bg-warn/10 text-warn" },
   confirmed: { label: "Confirmed", tone: "bg-ok/10 text-ok" },
-  completed: { label: "Completed", tone: "bg-plum/10 text-plum" },
+  completed: { label: "Completed", tone: "bg-brand/10 text-brand" },
   cancelled: { label: "Cancelled", tone: "bg-bad/10 text-bad" },
   no_show: { label: "No-show", tone: "bg-mute/15 text-mute" },
 };
 
 export const ORDER_STATUS: Record<string, { label: string; tone: string }> = {
   pending_payment: { label: "Awaiting payment", tone: "bg-warn/10 text-warn" },
-  placed: { label: "Preparing", tone: "bg-plum/10 text-plum" },
+  placed: { label: "Preparing", tone: "bg-brand/10 text-brand" },
   ready: { label: "Ready for pickup", tone: "bg-ok/10 text-ok" },
   picked_up: { label: "Picked up", tone: "bg-mute/15 text-mute" },
   cancelled: { label: "Cancelled", tone: "bg-bad/10 text-bad" },

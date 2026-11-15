@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { getProducts } from "@/lib/catalog";
 import { PageHeader } from "@/components/site/PageHeader";
-import { ProductGrid } from "@/components/shop/ProductGrid";
+import { ProductCard } from "@/components/shop/ProductCard";
+import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "Shop",
-  description: "Oils, scrubs and skin care used at Opal Spa, Bhopal. Order online and pick up from the salon in Arera Colony.",
+  description: "Oils, scrubs and skin care from Opal Spa, Bhopal. Order online and pick up from the salon in Arera Colony.",
   alternates: { canonical: "/shop" },
 };
 
@@ -15,23 +16,27 @@ export default async function ShopPage() {
     <>
       <PageHeader
         eyebrow="Shop · pickup only"
-        lines={["Take a little", <em key="h" className="text-wine">home</em>]}
-        intro="Products from our rooms, for use between visits. Order here, pay online or at the counter, and pick up from the front desk in Arera Colony. We don't ship."
+        title={
+          <>
+            Take your routine <em className="text-accent">home</em>
+          </>
+        }
+        intro="Order here, pay online or at the counter, and pick up from the front desk in Arera Colony. We don't ship."
       />
-      <div className="mx-auto max-w-[1440px] px-5 pb-36 md:px-10">
-        <ProductGrid
-          products={products.map((p) => ({
-            id: p.id,
-            name: p.name,
-            brand: p.brand,
-            description: p.description,
-            size: p.size,
-            price: p.price,
-            stock: p.stock,
-            image: p.image,
-            tone: p.tone,
-          }))}
-        />
+      <div className="mx-auto max-w-[1280px] px-5 pb-24 md:px-8">
+        {products.length === 0 ? (
+          <p className="text-mute">New products are on the way.</p>
+        ) : (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {products.map((p, i) => (
+              <Reveal key={p.id} delay={(i % 4) * 0.05}>
+                <ProductCard
+                  p={{ id: p.id, name: p.name, brand: p.brand, description: p.description, size: p.size, price: p.price, stock: p.stock, image: p.image, tone: p.tone }}
+                />
+              </Reveal>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

@@ -22,7 +22,7 @@ export function StaffManager({ staff, staffSelection }: { staff: S[]; staffSelec
         <ul className="divide-y divide-line">
           {staff.map((s) => (
             <li key={s.id} className="flex flex-wrap items-center gap-3 py-3 text-sm">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blush font-display text-plum">{s.name[0]}</span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 font-display text-brand">{s.name[0]}</span>
               <span className="min-w-40 flex-1">
                 <span className="font-medium">{s.name}</span>
                 {!s.active && <span className="ml-2 rounded bg-mute/15 px-1.5 py-0.5 text-[0.65rem] text-mute">Inactive</span>}

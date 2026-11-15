@@ -45,7 +45,7 @@ export default async function AccountPage() {
         <div>
           <p className="eyebrow">My account</p>
           <h1 className="display mt-4 text-5xl md:text-7xl">
-            Hello, <em className="text-wine">{user.name.split(" ")[0]}</em>
+            Hello, <em className="text-accent">{user.name.split(" ")[0]}</em>
           </h1>
           <p className="mt-3 text-sm text-mute">{user.email}</p>
         </div>
@@ -67,7 +67,7 @@ export default async function AccountPage() {
       <div className="mt-16">
         <div className="flex items-end justify-between border-b border-line pb-4">
           <h2 className="display text-4xl">Upcoming</h2>
-          <Link href="/book" className="text-sm text-wine underline underline-offset-4">
+          <Link href="/book" className="text-sm text-accent underline underline-offset-4">
             New booking
           </Link>
         </div>

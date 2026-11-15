@@ -6,6 +6,14 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { signIn, signUp } from "@/lib/auth-client";
 
+const GOOGLE_ERRORS: Record<string, string> = {
+  account_not_linked:
+    "An account with this email already exists with a password. Sign in with your email and password instead.",
+  "account not linked":
+    "An account with this email already exists with a password. Sign in with your email and password instead.",
+  access_denied: "Google sign-in was cancelled.",
+};
+
 function safeNext(raw: string | null) {
   // Only allow same-site relative paths to avoid open redirects.
   if (!raw || !raw.startsWith("/") || raw.startsWith("//") || raw.startsWith("/\\")) return "/account";
@@ -20,7 +28,10 @@ export function AuthForm({ mode, googleEnabled }: { mode: "sign-in" | "sign-up";
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setNext(safeNext(new URLSearchParams(window.location.search).get("next")));
+    const q = new URLSearchParams(window.location.search);
+    setNext(safeNext(q.get("next")));
+    const err = q.get("error");
+    if (err) setError(GOOGLE_ERRORS[err] ?? "Google sign-in didn't work. Please try again or use your email and password.");
   }, []);
 
   const submit = async (e: React.FormEvent) => {
@@ -44,7 +55,16 @@ export function AuthForm({ mode, googleEnabled }: { mode: "sign-in" | "sign-up";
 
   const google = async () => {
     setError(null);
-    const res = await signIn.social({ provider: "google", callbackURL: next });
+    setLoading(true);
+    const here = `${window.location.pathname}?next=${encodeURIComponent(next)}`;
+    const res = await signIn.social({
+      provider: "google",
+      // "/go" sends admins to /admin, staff to /staff, customers to /account
+      callbackURL: next === "/account" ? "/go" : next,
+      newUserCallbackURL: next === "/account" ? "/go" : next,
+      errorCallbackURL: here,
+    });
+    setLoading(false);
     if (res?.error) setError(res.error.message ?? "Google sign-in failed.");
   };
 
@@ -60,7 +80,8 @@ export function AuthForm({ mode, googleEnabled }: { mode: "sign-in" | "sign-up";
           <button
             type="button"
             onClick={google}
-            className="mt-8 flex w-full items-center justify-center gap-3 border border-line bg-white py-3 text-sm transition-colors hover:border-ink"
+            disabled={loading}
+            className="mt-8 flex w-full items-center justify-center gap-3 rounded-full border border-line bg-white py-3.5 text-sm font-semibold transition-colors hover:border-ink disabled:opacity-60"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
               <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.7v3h3.9c2.3-2.1 3.5-5.2 3.5-8.9z" />
@@ -104,7 +125,7 @@ export function AuthForm({ mode, googleEnabled }: { mode: "sign-in" | "sign-up";
             {error}
           </p>
         )}
-        <button disabled={loading} className="w-full rounded-full bg-plum py-3.5 text-sm text-paper transition-colors hover:bg-wine disabled:opacity-60">
+        <button disabled={loading} className="w-full rounded-full bg-brand py-3.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:opacity-60">
           {loading ? "Please wait…" : mode === "sign-in" ? "Sign in" : "Create account"}
         </button>
       </form>
@@ -113,14 +134,14 @@ export function AuthForm({ mode, googleEnabled }: { mode: "sign-in" | "sign-up";
         {mode === "sign-in" ? (
           <>
             New here?{" "}
-            <Link href={`/sign-up?next=${encodeURIComponent(next)}`} className="text-wine underline underline-offset-4">
+            <Link href={`/sign-up?next=${encodeURIComponent(next)}`} className="text-accent underline underline-offset-4">
               Create an account
             </Link>
           </>
         ) : (
           <>
             Already have an account?{" "}
-            <Link href={`/sign-in?next=${encodeURIComponent(next)}`} className="text-wine underline underline-offset-4">
+            <Link href={`/sign-in?next=${encodeURIComponent(next)}`} className="text-accent underline underline-offset-4">
               Sign in
             </Link>
           </>

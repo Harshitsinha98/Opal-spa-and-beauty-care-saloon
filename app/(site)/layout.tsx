@@ -5,8 +5,6 @@ import { Footer } from "@/components/site/Footer";
 import { CartProvider } from "@/components/cart/CartContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
-import { Cursor } from "@/components/motion/Cursor";
-import { Preloader } from "@/components/motion/Preloader";
 import { MotionRoot } from "@/components/motion/MotionRoot";
 import { LocalBusinessJsonLd } from "@/components/site/JsonLd";
 
@@ -17,19 +15,15 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   return (
     <MotionRoot>
       <CartProvider>
-        <div className="grain">
-          <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:bg-paper focus:px-4 focus:py-2">
-            Skip to content
-          </a>
-          <Preloader />
-          <SmoothScroll />
-          <Cursor />
-          <Header phone={s.business.phone} hours={hoursText(s.hours)} />
-          <main id="main">{children}</main>
-          <Footer s={s} />
-          <CartDrawer />
-          <LocalBusinessJsonLd s={s} />
-        </div>
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-white focus:px-4 focus:py-2">
+          Skip to content
+        </a>
+        <SmoothScroll />
+        <Header phone={s.business.phone} hours={hoursText(s.hours)} />
+        <main id="main">{children}</main>
+        <Footer s={s} />
+        <CartDrawer />
+        <LocalBusinessJsonLd s={s} />
       </CartProvider>
     </MotionRoot>
   );

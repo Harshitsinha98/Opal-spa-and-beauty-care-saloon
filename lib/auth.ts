@@ -3,6 +3,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "@better-auth/drizzle-adapter";
 import { nextCookies } from "better-auth/next-js";
 import { db, schema } from "./db";
+import { adminEmails } from "./admin-emails";
 
 const googleEnabled = Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);
 
@@ -32,6 +33,24 @@ export const auth = betterAuth({
         },
       }
     : {},
+  account: {
+    // Signing in with Google links to an existing account with the same email,
+    // as long as that account's email is verified (admins and staff are created verified).
+    accountLinking: { enabled: true, trustedProviders: ["google"] },
+  },
+  databaseHooks: {
+    user: {
+      create: {
+        // A Google sign-up whose verified email is listed in ADMIN_EMAIL becomes an admin straight away.
+        // Email/password sign-ups are never verified here, so they can't claim the admin email.
+        before: async (user) => {
+          if (user.emailVerified && adminEmails().includes(user.email.toLowerCase())) {
+            return { data: { ...user, role: "admin" } };
+          }
+        },
+      },
+    },
+  },
   user: {
     additionalFields: {
       // input: false -> users can never set their own role or sneak it into sign-up.

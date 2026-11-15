@@ -13,10 +13,10 @@ export const SITE = {
 };
 
 export const NAV = [
-  { href: "/services", label: "Menu" },
-  { href: "/gallery", label: "The house" },
+  { href: "/services", label: "Services" },
   { href: "/shop", label: "Shop" },
-  { href: "/contact", label: "Visit" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function telHref(phone: string) {

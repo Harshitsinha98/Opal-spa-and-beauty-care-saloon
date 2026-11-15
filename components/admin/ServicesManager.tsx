@@ -63,7 +63,7 @@ export function ServicesManager({ cats, services }: { cats: Cat[]; services: Svc
                     <span className="min-w-48 flex-1">
                       <span className="font-medium">{s.name}</span>
                       {!s.active && <span className="ml-2 rounded bg-mute/15 px-1.5 py-0.5 text-[0.65rem] text-mute">Hidden</span>}
-                      {s.featured && <span className="ml-2 rounded bg-brass/15 px-1.5 py-0.5 text-[0.65rem] text-brass">On home page</span>}
+                      {s.featured && <span className="ml-2 rounded bg-gold/15 px-1.5 py-0.5 text-[0.65rem] text-gold">On home page</span>}
                       <span className="block text-xs text-mute">{durationLabel(s.durationMin)}</span>
                     </span>
                     <span className="w-24 text-right font-medium">{rupees(s.price)}</span>

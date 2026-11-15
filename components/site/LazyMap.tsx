@@ -26,12 +26,12 @@ export function LazyMap({ address }: { address: string }) {
   const src = `https://www.google.com/maps?q=${encodeURIComponent(`Opal Spa & Beauty Care Salon, ${address}`)}&output=embed`;
 
   return (
-    <div ref={ref} className="relative aspect-[4/3] w-full overflow-hidden bg-sand md:aspect-[5/4]">
+    <div ref={ref} className="relative h-full min-h-[22rem] w-full overflow-hidden bg-sand">
       {load ? (
         <iframe
           title="Map to Opal Spa, Arera Colony"
           src={src}
-          className="absolute inset-0 h-full w-full border-0 [filter:grayscale(0.85)_sepia(0.25)_contrast(1.05)]"
+          className="absolute inset-0 h-full w-full border-0 [filter:saturate(0.7)_contrast(1.02)]"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />

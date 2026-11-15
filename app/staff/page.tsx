@@ -29,7 +29,7 @@ export default async function StaffHome({ searchParams }: { searchParams: Promis
             <Arrow dir="left" /> Prev
           </a>
           <input type="date" name="date" defaultValue={date} className="field w-auto text-sm" />
-          <button className="rounded-md bg-plum px-4 py-2 text-sm text-paper">Go</button>
+          <button className="rounded-md bg-brand px-4 py-2 text-sm text-paper">Go</button>
           <a href={`/staff?date=${addDays(date, 1)}`} className="rounded-md border border-line px-3 py-2 text-sm">
             Next <Arrow />
           </a>

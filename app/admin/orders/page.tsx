@@ -34,7 +34,7 @@ export default async function AdminOrders({ searchParams }: { searchParams: Prom
             Search
             <input name="q" defaultValue={q} className="field mt-1 text-sm text-ink" placeholder="Code, name, phone" />
           </label>
-          <button className="rounded-md bg-plum px-4 py-2.5 text-sm text-paper">Filter</button>
+          <button className="rounded-md bg-brand px-4 py-2.5 text-sm text-paper">Filter</button>
         </form>
       </Card>
       <Card>{rows.length ? <OrderTable rows={rows} role="admin" /> : <p className="text-sm text-mute">No orders.</p>}</Card>
